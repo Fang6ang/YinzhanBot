@@ -1,0 +1,8 @@
+*.ipynb
+*.log
+raw_data/**
+raw_data/
+.idea/
+.DS_Store
+**/__pycache__/
+config/
