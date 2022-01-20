@@ -5,13 +5,13 @@ from crawler import HoleCrawler
 import argparse, logging, requests, time
 
 ARG = argparse.ArgumentParser()
-ARG.add_argument('--interv', type=int, default=60, help='Interval gap(s) of fetching.')
+ARG.add_argument('--inter', type=int, default=60, help='Interval gap(s) of fetching.')
 ARG.add_argument('--log', type=str, default=None, help='Logging file path.')
 
 ARG = ARG.parse_args()
 
 
-# def update(_crawler: crawler.HoleCrawler, interv):
+# def update(_crawler: crawler.HoleCrawler, inter):
 #     dic = dict()
 #     col = ['text', 'type', 'timestamp', 'reply']
 #     while True:
@@ -23,7 +23,7 @@ ARG = ARG.parse_args()
 #                 df.loc[pid, 'reply'] = _crawler.replies[pid]
 #             df.to_csv('./raw_data/' + df.index[-1] + '-' + df.index[0] + '.csv')
 #             _crawler.holes, _crawler.replies = [], {}
-#         time.sleep(interv)
+#         time.sleep(inter)
 
 
 def fetch(_crawler: crawler.HoleCrawler, num_pages=100, no_comments=False):
@@ -41,13 +41,13 @@ def fetch(_crawler: crawler.HoleCrawler, num_pages=100, no_comments=False):
 
 
 if __name__ == '__main__':
-    with open('./config/conf.json', 'r') as f:
+    with open('../config/conf.json', 'r') as f:
         params = json.load(f)
     print(params)
 
     LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
     if ARG.log is not None:
-        logging.basicConfig(filename='./my.log', level=logging.INFO, format=LOG_FORMAT)
+        logging.basicConfig(filename=ARG.log, level=logging.INFO, format=LOG_FORMAT)
     else:
         logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
