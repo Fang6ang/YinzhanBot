@@ -35,8 +35,8 @@ def fetch(_crawler: crawler.HoleCrawler, num_pages=100, no_comments=False):
     if not no_comments:
         for pid in df.index:
             df.loc[pid, 'reply'] = _crawler.replies[pid]
-    # df.to_csv('./raw_data/' + df.index[-1] + '-' + df.index[0] + '.csv')
-    df.to_csv('./raw_data/no_comments.csv')
+    # df.to_csv('../raw_data/' + df.index[-1] + '-' + df.index[0] + '.csv')
+    df.to_csv('../raw_data/no_comments.csv')
     _crawler.holes, _crawler.replies = [], {}
 
 
