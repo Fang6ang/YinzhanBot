@@ -7,3 +7,5 @@ raw_data/
 **/__pycache__/
 config/
 processed_data/
+crawler/chromedriver
+.vscode/

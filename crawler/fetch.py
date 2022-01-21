@@ -1,7 +1,7 @@
 import json
 
-import crawler, pandas as pd
-from crawler import HoleCrawler
+import HoleCrawler, pandas as pd
+from HoleCrawler import HoleCrawler
 import argparse, logging, requests, time
 
 ARG = argparse.ArgumentParser()
@@ -11,7 +11,7 @@ ARG.add_argument('--log', type=str, default=None, help='Logging file path.')
 ARG = ARG.parse_args()
 
 
-# def update(_crawler: crawler.HoleCrawler, inter):
+# def update(_crawler: HoleCrawler, inter):
 #     dic = dict()
 #     col = ['text', 'type', 'timestamp', 'reply']
 #     while True:
@@ -26,7 +26,7 @@ ARG = ARG.parse_args()
 #         time.sleep(inter)
 
 
-def fetch(_crawler: crawler.HoleCrawler, num_pages=100, no_comments=False):
+def fetch(_crawler: HoleCrawler, num_pages=100, no_comments=False):
     col = ['text', 'type', 'timestamp', 'reply']
     for cur_page in range(1, num_pages + 1):
         if _crawler.update_holes(p=cur_page, no_comments=no_comments) is not None:
