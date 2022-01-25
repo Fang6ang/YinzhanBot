@@ -1,0 +1,8 @@
+conda activate web
+cd crawler
+python3.8 fetch.py
+
+cur_date=$(date "+%Y.%m.%d")
+mv ../raw_data/no_comments.csv ../raw_data/${cur_date}.csv
+
+cd ../model
