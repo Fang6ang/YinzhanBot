@@ -9,7 +9,7 @@ from torch.utils.data import DataLoader
 
 ARG = argparse.ArgumentParser()
 
-ARG.add_argument('--epoch', type=int, default=140, help='Epoch num.')
+ARG.add_argument('--epoch', type=int, default=3, help='Epoch num.')
 ARG.add_argument('--seed', type=int, default=98765, help='Random seed.')
 ARG.add_argument('--cuda', type=str, default=None, help='Cuda ID.')
 ARG.add_argument('--batch', type=int, default=2, help='Training batch size.')
@@ -36,8 +36,8 @@ def train(_loader, arg):
     opt = AdamW(model.parameters(), lr=arg.lr)
     print('Model loaded, start training.')
 
-    process_bar = tqdm(range(len(_loader) * 3 // arg.batch))
-    for _ in range(3):
+    process_bar = tqdm(range(len(_loader) * arg.epoch))
+    for _ in range(arg.epoch):
         for seqs in _loader:
             input_dict = tokenizer(seqs, padding=True, truncation=True, return_tensors='pt')
             outputs = model(input_dict['input_ids'].to(device), labels=input_dict['input_ids'].to(device))
@@ -54,7 +54,7 @@ def train(_loader, arg):
     predict(arg)
 
 def predict(arg):
-    res = generate(device=arg.cuda)
+    res = generate(device=int(arg.cuda))
     with open('res.json', 'w') as f:
         json.dump(res, f)
 
