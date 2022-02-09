@@ -1,7 +1,8 @@
 import torch, random, os, argparse, json
 from tqdm.auto import tqdm
 from torch.nn.utils import clip_grad_norm_ as clip_grad
-from transformers import BertTokenizer, GPT2LMHeadModel, AdamW
+from transformers import BertTokenizer, GPT2LMHeadModel
+from torch.optim import AdamW
 
 import pandas as pd, numpy as np
 from utils import TextData, generate
