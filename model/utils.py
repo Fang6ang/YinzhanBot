@@ -10,7 +10,7 @@ def generate(context='#3000000', device=None, path='../saved_model'):
     ppl = TextGenerationPipeline(model, tokenizer, device=device)
     model.to(torch.device(f'cuda:{device}' if device is not None else 'cpu'))
     
-    gen_text = ppl(context, max_length=200, do_sample=True)
+    gen_text = ppl(context, max_length=500, do_sample=True)
     return gen_text
 
 class TextData(Dataset):
