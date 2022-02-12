@@ -9,3 +9,4 @@ config/
 processed_data/
 crawler/chromedriver
 .vscode/
+sftp-config.json
